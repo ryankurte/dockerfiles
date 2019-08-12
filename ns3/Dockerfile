@@ -33,7 +33,10 @@ RUN apt-get install -y \
 
 # QT4 components
 RUN apt-get install -y \
-  qtbase5-dev
+  qtbase5-dev \ 
+  qt5-qmake \
+  qtbase4-dev \
+  qt4-qmake
 
 # Python components
 RUN apt-get install -y \
