@@ -18,7 +18,6 @@ RUN apt-get install -y \
   clang \
   valgrind \
   gsl-bin \
-  libgsl2 \
   libgsl-dev \
   flex \
   bison \
