@@ -21,6 +21,7 @@ RUN python -m pip install --user -r /root/esp-idf/requirements.txt
 # Setup paths
 ENV IDF_PATH="/root/esp-idf/"
 ENV PATH="$PATH:/root/.local/bin"
+ENV PATH="$PATH:/root/esp-idf/tools/"
 ENV PATH="$PATH:/root/.espressif/tools/xtensa-esp32-elf/esp32-2019r1-8.2.0/xtensa-esp32-elf/bin/"
 
 # Setup working directory
