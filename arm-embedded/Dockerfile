@@ -41,10 +41,9 @@ RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa && \
   apt-get install -y gcc-arm-embedded
 
 # Python tools
-RUN easy_install pip && \
-  pip install mbed-cli && \
-  pip install platformio && \
-  pip install pyserial
+RUN pip3 install mbed-cli && \
+    pip3 install platformio && \
+    pip3 install pyserial
 
 # Rust and arm targets
 RUN curl https://sh.rustup.rs -sSf | \
