@@ -1,20 +1,33 @@
 FROM debian:latest
 
 RUN apt-get update -y && apt-get install -y \
-    gcc git wget make libncurses-dev flex \
+    gcc cmake git wget make libncurses-dev flex \
     bison gperf python python-pip python-setuptools \
-    python-serial python-cryptography python-future
+    python-serial python-cryptography python-future \
+    zsh vim
 
 # Setup ESP IDF directory
-RUN mkdir /root/esp
-WORKDIR /root/esp
+WORKDIR /root
 
 # Clone the IDF
-RUN git clone -b v3.2.2 --recursive https://github.com/espressif/esp-idf.git
+RUN git clone -b v4.0-beta2 --recursive https://github.com/espressif/esp-idf.git
 
-# Download the toolchain
-RUN wget https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz && \
-    tar -xzf xtensa-esp32-elf-linux64-1.22.0-80-g6c4433a-5.2.0.tar.gz && \
-    export PATH="/root/esp/xtensa-esp32-elf/bin:$PATH"
+# Install the toolchain
+RUN /root/esp-idf/install.sh
 
+# Install dependencies
+RUN python -m pip install --user -r /root/esp-idf/requirements.txt
+
+# Setup paths
+ENV IDF_PATH="/root/esp-idf/"
+ENV PATH="$PATH:/root/.local/bin"
+ENV PATH="$PATH:/root/esp-idf/tools/"
+ENV PATH="$PATH:/root/.espressif/tools/xtensa-esp32-elf/esp32-2019r1-8.2.0/xtensa-esp32-elf/bin/"
+
+# Setup working directory
+RUN mkdir /root/work
+WORKDIR /root/work
+
+# Launch shell
+CMD ["zsh"]
 

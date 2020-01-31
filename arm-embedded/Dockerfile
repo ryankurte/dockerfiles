@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM debian:latest
 MAINTAINER Ryan Kurte <ryankurte@gmail.com>
 LABEL Description="Docker image for building arm-embedded projects"
 
@@ -33,18 +33,12 @@ RUN apt-get update && apt-get install -y \
   protobuf-compiler \
   libprotobuf-c-dev \
   protobuf-c-compiler \
-  python-protobuf
-
-# ARM gcc toolchain and custom ppa
-RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa && \
-  apt-get update && \
-  apt-get install -y gcc-arm-embedded
+  python-protobuf \
+  gcc-arm-none-eabi \
+  gdbarm-none-eabi
 
 # Python tools
-RUN easy_install pip && \
-  pip install mbed-cli && \
-  pip install platformio && \
-  pip install pyserial
+RUN pip3 install pyserial
 
 # Rust and arm targets
 RUN curl https://sh.rustup.rs -sSf | \
