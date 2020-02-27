@@ -4,7 +4,7 @@ FROM debian:stretch
 RUN dpkg --add-architecture armhf && \
     apt update -y && \
     apt install -y cmake curl file build-essential libc6-i386 gcc-arm-linux-gnueabihf libc6-armhf-cross \
-	libc6-dev-armhf-cross libssl-dev libssl-dev:armhf python3 python3-pip pkg-config libusb-dev && \
+	libc6-dev-armhf-cross libssl-dev libssl-dev:armhf python3 python3-pip pkg-config libusb-dev libusb-1.0 && \
     rm -rf /var/lib/apt/lists
 
 # Install rustup
