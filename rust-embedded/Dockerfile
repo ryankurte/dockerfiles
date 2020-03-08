@@ -15,6 +15,7 @@ ENV PATH "/root/.cargo/bin:$PATH"
 
 # Setup rust
 RUN rustup target add armv7-unknown-linux-gnueabihf thumbv7m-none-eabi thumbv7em-none-eabi thumbv7em-none-eabihf && \
+    rustup toolchain install nightly && \
     cargo install cargo-deb && \
     cargo install sccache --features all && \
     cargo install cargo-watch
