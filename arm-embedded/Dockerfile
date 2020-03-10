@@ -2,6 +2,8 @@ FROM debian:latest
 MAINTAINER Ryan Kurte <ryankurte@gmail.com>
 LABEL Description="Docker image for building arm-embedded projects"
 
+RUN dpkg --add-architecture armhf
+
 # General dependencies
 RUN apt-get update && apt-get install -y \
   git \
@@ -35,7 +37,11 @@ RUN apt-get update && apt-get install -y \
   protobuf-c-compiler \
   python-protobuf \
   gcc-arm-none-eabi \
-  gdbarm-none-eabi
+  gcc-arm-linux-gnueabihf \
+  gdb-multiarch \
+  mingw-w64 \
+  gcc-mingw-w64
+  
 
 # Python tools
 RUN pip3 install pyserial
