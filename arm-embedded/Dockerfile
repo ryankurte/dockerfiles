@@ -60,6 +60,9 @@ RUN git clone https://github.com/texane/stlink.git && \
   cd stlink && mkdir build && cd build && \
   cmake .. && make && make install
 
+# Install AWS tools
+RUN pip3 install awscli
+
 # Cleanup
 RUN apt-get clean && \
   rm -rf /var/lib/apt
