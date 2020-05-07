@@ -1,0 +1,17 @@
+diff --git a/tools/check_python_dependencies.py b/tools/check_python_dependencies.py
+index bb1d15765..a71bdec52 100755
+--- a/tools/check_python_dependencies.py
++++ b/tools/check_python_dependencies.py
+@@ -39,6 +39,12 @@ def escape_backslash(path):
+ if __name__ == "__main__":
+     idf_path = os.getenv("IDF_PATH")
+ 
++    print('{} sys.executable: {}'.format(sys.argv[0], sys.executable))
++    print('{} PATH: {}'.format(sys.argv[0], os.getenv("PATH")))
++    print('Environment:\n----')
++    print(repr(os.environ))
++    print('---\n')
++
+     default_requirements_path = os.path.join(idf_path, 'requirements.txt')
+ 
+     parser = argparse.ArgumentParser(description='ESP32 Python package dependency checker')
