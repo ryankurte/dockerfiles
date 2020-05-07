@@ -15,9 +15,9 @@ RUN curl https://sh.rustup.rs -s > /home/install.sh && \
 ENV PATH "/root/.cargo/bin:$PATH"
 
 # Setup rust
-RUN rustup target add armv7-unknown-linux-gnueabihf thumbv7m-none-eabi thumbv7em-none-eabi thumbv7em-none-eabihf x86_64-apple-darwin i686-pc-windows-gnu & \
-    rustup toolchain install nightly && \
+RUN rustup toolchain install nightly && \
     rustup default nightly && \
+    rustup target add armv7-unknown-linux-gnueabihf thumbv7m-none-eabi thumbv7em-none-eabi thumbv7em-none-eabihf x86_64-apple-darwin i686-pc-windows-gnu & \
     cargo install cargo-deb && \
     cargo install sccache --features all && \
     cargo install cargo-watch
