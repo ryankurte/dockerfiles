@@ -2,6 +2,8 @@ FROM ubuntu:latest
 MAINTAINER Ryan Kurte <ryankurte@gmail.com>
 LABEL Description="Docker image for building x86/64 native projects"
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # General dependencies and cleanup
 RUN apt-get update && apt-get install -y \
   git \
