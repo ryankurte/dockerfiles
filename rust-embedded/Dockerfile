@@ -3,7 +3,7 @@ FROM debian:stretch
 # Install deps
 RUN dpkg --add-architecture armhf && \
     apt update -y && \
-    apt install -y cmake curl file build-essential libc6-i386 gcc-arm-linux-gnueabihf libc6-armhf-cross mingw-w64 gcc-mingw-w64 \
+    apt install -y git cmake curl file build-essential libc6-i386 gcc-arm-linux-gnueabihf libc6-armhf-cross mingw-w64 gcc-mingw-w64 \
 	libc6-dev-armhf-cross libssl-dev libssl-dev:armhf python3 python3-pip pkg-config libusb-dev libusb-1.0 && \
     apt install -y libusb-dev:armhf libusb-1.0:armhf && \ 
     rm -rf /var/lib/apt/lists
