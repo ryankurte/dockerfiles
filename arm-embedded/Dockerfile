@@ -40,7 +40,8 @@ RUN apt-get update && apt-get install -y \
   gcc-arm-linux-gnueabihf \
   gdb-multiarch \
   mingw-w64 \
-  gcc-mingw-w64
+  gcc-mingw-w64 \
+  srecord
   
 
 # Python tools
