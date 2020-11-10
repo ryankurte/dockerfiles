@@ -12,6 +12,7 @@ RUN dpkg --add-architecture armhf && \
 RUN curl https://sh.rustup.rs -s > /home/install.sh && \
     chmod +x /home/install.sh && \
     sh /home/install.sh -y --verbose
+
 ENV PATH "/root/.cargo/bin:$PATH"
 
 # Setup rust
@@ -19,7 +20,7 @@ RUN rustup toolchain install nightly && \
     rustup default nightly && \
     rustup target add armv7-unknown-linux-gnueabihf thumbv7m-none-eabi thumbv7em-none-eabi thumbv7em-none-eabihf x86_64-apple-darwin i686-pc-windows-gnu & \
     cargo install cargo-deb && \
-    cargo install sccache --features all && \
+    cargo install --git https://github.com/mozilla/sccache.git --features all && \
     cargo install cargo-watch
 
 # Install AWS tools

@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM debian:latest
 MAINTAINER Ryan Kurte <ryankurte@gmail.com>
 LABEL Description="Docker image for building x86/64 native projects"
 
@@ -46,15 +46,5 @@ RUN apt-get update && apt-get install -y \
 
 # Update PIP & Install useful packages
 RUN pip3 install pystache pyyaml
-
-# Set working directory for manually installed components
-WORKDIR /root
-
-# Install Golang
-RUN curl -O https://storage.googleapis.com/golang/go1.12.4.linux-amd64.tar.gz \
-    && tar -C /usr/local -xf go1.12.4.linux-amd64.tar.gz
-ENV PATH $PATH:/usr/local/go/bin
-RUN mkdir /root/go
-ENV GOPATH /root/go
 
 
