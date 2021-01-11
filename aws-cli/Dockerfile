@@ -10,4 +10,5 @@ RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
 
 RUN pip install awscli
 
+RUN pip install anybadge
 
