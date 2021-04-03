@@ -12,7 +12,8 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
+      max-parallel: 2
       matrix:
         image:
           - arm-embedded
@@ -35,10 +36,10 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build ${{ matrix.image }} docker image
-      run: docker build --tag ${{ matrix.image }}:$(date +%s) ${{ matrix.image }}
-    - name: Publish ${{ matrix.image }} to ghcr.io/ryankurte/${{ matrix.image }}:$(date +%s)
+    - name: Build ${{ matrix.image }}:${{ github.sha }} image
+      run: docker build --tag ${{ matrix.image }}:${{ github.sha }} ${{ matrix.image }}
+    - name: Publish ${{ matrix.image }}:${{ github.sha }}
       run: |
-        docker tag ${{ matrix.image }}:$(date +%s) ghcr.io/ryankurte/${{ matrix.image }}:$(date +%s)
-        docker push ghcr.io/ryankurte/${{ matrix.image }}:$(date +%s)
+        docker tag ${{ matrix.image }}:${{ github.sha }} ghcr.io/ryankurte/${{ matrix.image }}:${{ github.sha }}
+        docker push ghcr.io/ryankurte/${{ matrix.image }}:${{ github.sha }}
   
