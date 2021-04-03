@@ -62,10 +62,14 @@ jobs:
       run: |
         docker tag ${{ matrix.image }}:${GITHUB_SHA::8} ghcr.io/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
         docker push ghcr.io/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
+        docker tag ${{ matrix.image }}:${GITHUB_SHA::8} ghcr.io/ryankurte/${{ matrix.image }}:latest
+        docker push ghcr.io/ryankurte/${{ matrix.image }}:latest
         
     - name: Publish ${{ matrix.image }} to dockerhub
       #if: steps.changes.outputs.changed == 'true'
       run: |
         docker tag ${{ matrix.image }}:${GITHUB_SHA::8} docker.io/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
         docker push docker.io/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
+        docker tag ${{ matrix.image }}:${GITHUB_SHA::8} docker.io/ryankurte/${{ matrix.image }}:latest
+        docker push docker.io/ryankurte/${{ matrix.image }}:latest
         
