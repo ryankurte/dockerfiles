@@ -45,11 +45,16 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
           
-    - name: Build ${{ matrix.image }}:${{ github.sha }} image
-      run: docker build --tag ${{ matrix.image }}:${{ github.sha }} ${{ matrix.image }}
+    - name: Build ${{ matrix.image }}:${GITHUB_SHA::8} image
+      run: docker build --tag ${{ matrix.image }}:${GITHUB_SHA::8} ${{ matrix.image }}
       
-    - name: Publish ${{ matrix.image }}:${{ github.sha }}
+    - name: Publish ${{ matrix.image }}:${GITHUB_SHA::8} to ghcr
       run: |
-        docker tag ${{ matrix.image }}:${{ github.sha }} ghcr.io/ryankurte/${{ matrix.image }}:${{ github.sha }}
-        docker push ghcr.io/ryankurte/${{ matrix.image }}:${{ github.sha }}
-  
+        docker tag ${{ matrix.image }}:${GITHUB_SHA::8} ghcr.io/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
+        docker push ghcr.io/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
+        
+    - name: Publish ${{ matrix.image }}:${GITHUB_SHA::8} to dockerhub
+      run: |
+        docker tag ${{ matrix.image }}:${GITHUB_SHA::8} hub.docker.com/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
+        docker hub.docker.com/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
+        
