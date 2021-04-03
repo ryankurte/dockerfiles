@@ -30,7 +30,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build ${{ matrix.image }} docker image
-      run: docker build ${{ matrix.image }} -tag ${{ matrix.image }}:$(date +%s)
+      run: docker build --tag ${{ matrix.image }}:$(date +%s) ${{ matrix.image }}
     - name: Publish ${{ matrix.image }} to docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}/${{ matrix.image }}:$(date +%s)
       run: |
         docker tag ${{ matrix.image }}:$(date +%s) docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}/${{ matrix.image }}:$(date +%s)
