@@ -56,5 +56,5 @@ jobs:
     - name: Publish ${{ matrix.image }}:${GITHUB_SHA::8} to dockerhub
       run: |
         docker tag ${{ matrix.image }}:${GITHUB_SHA::8} hub.docker.com/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
-        docker hub.docker.com/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
+        docker push hub.docker.com/ryankurte/${{ matrix.image }}:${GITHUB_SHA::8}
         
