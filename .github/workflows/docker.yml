@@ -12,6 +12,7 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         image:
           - arm-embedded
@@ -31,8 +32,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build ${{ matrix.image }} docker image
       run: docker build --tag ${{ matrix.image }}:$(date +%s) ${{ matrix.image }}
-    - name: Publish ${{ matrix.image }} to docker.pkg.github.com/${{ GITHUB_REPOSITORY }}/${{ matrix.image }}:$(date +%s)
+    - name: Publish ${{ matrix.image }} to docker.pkg.github.com/ryankurte/dockerfiles/${{ matrix.image }}:$(date +%s)
       run: |
-        docker tag ${{ matrix.image }}:$(date +%s) docker.pkg.github.com/${{ GITHUB_REPOSITORY }}/${{ matrix.image }}:$(date +%s)
-        docker push docker.pkg.github.com/${{ GITHUB_REPOSITORY }}/${{ matrix.image }}:$(date +%s)
+        docker tag ${{ matrix.image }}:$(date +%s) docker.pkg.github.com/ryankurte/dockerfiles/${{ matrix.image }}:$(date +%s)
+        docker push docker.pkg.github.com/ryankurte/dockerfiles/${{ matrix.image }}:$(date +%s)
   
