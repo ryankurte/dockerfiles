@@ -1,0 +1,38 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image:
+          - arm-embedded
+          - aws-cli
+          - esp32
+          - ghdl
+          - gitbook
+          - latex
+          - mdbook
+          - native-dev
+          - rust-embedded
+          - rust-i386
+          - vim
+          - zip
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build ${{ matrix.image }} docker image
+      run: docker build ${{ matrix.image }} -tag ${{ matrix.image }}:$(date +%s)
+    - name: Publish ${{ matrix.image }} to docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}/${{ matrix.image }}:$(date +%s)
+      run: |
+        docker tag ${{ matrix.image }}:$(date +%s) docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}/${{ matrix.image }}:$(date +%s)
+        docker push docker.pkg.github.com/${{ env.GITHUB_REPOSITORY }}/${{ matrix.image }}:$(date +%s)
+  
