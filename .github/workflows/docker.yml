@@ -12,8 +12,8 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
-      max-parallel: 2
+      fail-fast: false
+      max-parallel: 4
       matrix:
         image:
           - arm-embedded
