@@ -36,8 +36,8 @@ jobs:
 
     - name: Re-publish base images from dockerhub
       run: |
-        docker pull docker.io/${{ matrix.image }}:latest
-        docker tag docker.io/${{ matrix.image }}:latest ghcr.io/ryankurte/#{{ matrix.image }}:latest
+        docker pull ${{ matrix.image }}:latest
+        docker tag ${{ matrix.image }}:latest ghcr.io/ryankurte/#{{ matrix.image }}:latest
         docker push ghcr.io/ryankurte/#{{ matrix.image }}:latest
 
   build:
