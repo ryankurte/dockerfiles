@@ -1,5 +1,5 @@
-FROM debian:latest
-MAINTAINER Ryan Kurte <ryankurte@gmail.com>
+FROM ghcr.io/ryankurte/debian:latest
+LABEL Maintainer="Ryan Kurte <ryankurte@gmail.com>"
 LABEL Description="Docker image for building arm-embedded projects"
 
 RUN dpkg --add-architecture armhf

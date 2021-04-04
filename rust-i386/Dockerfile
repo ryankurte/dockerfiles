@@ -1,5 +1,5 @@
-FROM debian:latest
-LABEL description="Container for cross-compiling i386 linux applications"
+FROM ghcr.io/ryankurte/debian:latest
+LABEL Description="Container for cross-compiling i386 linux applications"
 
 # Install deps
 RUN dpkg --add-architecture i386 && \

@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM ghcr.io/ryankurte/debian:latest
 
 # Install deps
 RUN dpkg --add-architecture armhf &&\

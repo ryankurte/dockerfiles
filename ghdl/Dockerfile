@@ -1,4 +1,4 @@
-from debian:latest
+FROM ghcr.io/ryankurte/debian:latest
 
 # Fetch dependencies
 RUN apt update && apt-get install -y \

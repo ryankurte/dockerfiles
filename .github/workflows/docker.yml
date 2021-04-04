@@ -8,9 +8,42 @@ on:
 
 jobs:
 
+  fetch-deps:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        image:
+          - debian
+          - ubuntu
+          - node
+          - rust
+
+    steps:
+    - name: Login to Docker Hub (to avoid rate-limiting)
+      uses: docker/login-action@v1
+      with:
+        username: ryankurte
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Login to GHCR (for publishing)
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Re-publish base images from dockerhub
+      run: |
+        docker pull docker.io/${{ image }}:latest
+        docker tag docker.io/${{ image }}:latest ghcr.io/ryankurte/#{{ image }}:latest
+        docker push ghcr.io/ryankurte/#{{ image }}:latest
+
   build:
 
     runs-on: ubuntu-latest
+    needs: fetch-deps
     strategy:
       fail-fast: false
       max-parallel: 4
@@ -38,7 +71,7 @@ jobs:
       with:
         paths: ${{ matrix.image }}
     
-    - name: Login to Docker Hub (to avoid rate-limiting)
+    - name: Login to Docker Hub (to mitigate rate-limiting)
       uses: docker/login-action@v1
       #if: steps.changes.outputs.changed == 'true'
       with:
