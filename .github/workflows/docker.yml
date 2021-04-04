@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      max-parallel: 4
       matrix:
         image:
           - debian
@@ -40,6 +39,17 @@ jobs:
         docker tag ${{ matrix.image }}:latest ghcr.io/ryankurte/${{ matrix.image }}:latest
         docker push ghcr.io/ryankurte/${{ matrix.image }}:latest
     
+  build-base:
+    runs-on: ubuntu-latest
+    needs: fetch-deps
+    steps:
+    - name: Login to GHCR (for publishing)
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Check for base dockerfile changes
       uses: marceloprado/has-changed-path@v1
       id: changes
@@ -55,10 +65,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    needs: fetch-deps
+    needs: [ fetch-deps, build-base ]
     strategy:
       fail-fast: false
-      max-parallel: 4
       matrix:
         image:
           - arm-embedded
