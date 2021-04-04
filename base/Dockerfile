@@ -1,6 +1,7 @@
 FROM ghcr.io/ryankurte/debian:latest
+
 LABEL Maintainer="Ryan Kurte <ryankurte@gmail.com>"
-LABEL Description="Base debian image to avoid dependency on dockerhub"
+LABEL Description="Debian derived common / base image for dev tools"
 
 RUN apt-get update -y && \
     apt-get install -y \

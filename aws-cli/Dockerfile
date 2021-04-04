@@ -1,4 +1,4 @@
-FROM ghcr.io/ryankurte/debian:latest
+FROM ghcr.io/ryankurte/base:latest
 
 RUN pip3 install awscli
 

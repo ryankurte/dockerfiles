@@ -34,11 +34,23 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Re-publish base images from dockerhub
+    - name: Re-publish images from dockerhub
       run: |
         docker pull ${{ matrix.image }}:latest
         docker tag ${{ matrix.image }}:latest ghcr.io/ryankurte/${{ matrix.image }}:latest
         docker push ghcr.io/ryankurte/${{ matrix.image }}:latest
+    
+    - name: Check for base dockerfile changes
+      uses: marceloprado/has-changed-path@v1
+      id: changes
+      with:
+        paths: base/
+    
+    - name: Build base image
+      #if: steps.changes.outputs.changed == 'true'
+      run: |
+        docker build --tag ghcr.io/ryankurte/base:latest base
+        docker push ghcr.io/ryankurte/base:latest
 
   build:
 
