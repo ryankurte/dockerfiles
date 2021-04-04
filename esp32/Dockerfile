@@ -11,4 +11,4 @@ RUN apt-get update && apt-get install -y \
   protobuf-compiler \
   libprotobuf-c-dev \
   protobuf-c-compiler \
-  python-protobuf
+  python3-protobuf
