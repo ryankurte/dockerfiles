@@ -61,4 +61,3 @@ RUN pip3 install awscli
 # Cleanup
 RUN apt-get clean && \
   rm -rf /var/lib/apt
-
