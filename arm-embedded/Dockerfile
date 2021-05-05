@@ -13,9 +13,7 @@ RUN apt-get update && apt-get install -y \
   make \
   automake \
   autoconf \
-  python-setuptools \
   ninja-build \
-  python-dev \
   libtool \
   unzip \
   libffi-dev \
@@ -30,22 +28,18 @@ RUN apt-get update && apt-get install -y \
   build-essential \
   python3 \
   python3-dev \
+  python3-setuptools \
   python3-pip \
+  python3-protobuf \
+  python3-serial \
   libprotobuf-dev \
   protobuf-compiler \
   libprotobuf-c-dev \
   protobuf-c-compiler \
-  python-protobuf \
   gcc-arm-none-eabi \
   gcc-arm-linux-gnueabihf \
   gdb-multiarch \
-  mingw-w64 \
-  gcc-mingw-w64 \
   srecord
-  
-
-# Python tools
-RUN pip3 install pyserial
 
 # Rust and arm targets
 RUN curl https://sh.rustup.rs -sSf | \
