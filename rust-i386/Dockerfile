@@ -21,3 +21,4 @@ RUN rustup toolchain install nightly && \
     cargo install --git https://github.com/mozilla/sccache.git --features all && \
     cargo install cargo-deb
 RUN rustup target add i686-unknown-linux-gnu
+
