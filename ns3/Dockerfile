@@ -1,5 +1,5 @@
-FROM ubuntu:latest
-MAINTAINER Ryan Kurte <ryankurte@gmail.com>
+FROM ghcr.io/ryankurte/ubuntu:latest
+LABEL Maintainer="Ryan Kurte <ryankurte@gmail.com>"
 LABEL Description="Docker image for NS-3 Network Simulator"
 
 RUN apt-get update

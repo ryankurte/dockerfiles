@@ -1,5 +1,5 @@
-FROM ubuntu:latest
-MAINTAINER Ryan Kurte <ryankurte@gmail.com>
+FROM ghcr.io/ryankurte/debian:latest
+Label Maintainer="Ryan Kurte <ryankurte@gmail.com>"
 LABEL Description="Docker image for building x86/64 native projects"
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -51,15 +51,5 @@ RUN mkdir /tmp/protobufs && cd /tmp/protobufs && \
 
 # Update PIP & Install useful packages
 RUN pip3 install pystache pyyaml protobuf grpcio-tools
-
-# Set working directory for manually installed components
-WORKDIR /root
-
-# Install Golang
-RUN curl -O https://storage.googleapis.com/golang/go1.12.4.linux-amd64.tar.gz \
-    && tar -C /usr/local -xf go1.12.4.linux-amd64.tar.gz
-ENV PATH $PATH:/usr/local/go/bin
-RUN mkdir /root/go
-ENV GOPATH /root/go
 
 
