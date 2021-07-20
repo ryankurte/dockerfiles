@@ -12,3 +12,6 @@ RUN apt-get update && apt-get install -y \
   libprotobuf-c-dev \
   protobuf-c-compiler \
   python3-protobuf
+
+ENV PYTHON=/usr/bin/python3
+

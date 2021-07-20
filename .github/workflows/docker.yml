@@ -85,6 +85,8 @@ jobs:
           - native-dev
           - rust-embedded
           - rust-i386
+          - rust-armhf
+          - rust-aarch64
           - vim
           - zip
 
