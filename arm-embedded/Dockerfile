@@ -2,6 +2,8 @@ FROM ghcr.io/ryankurte/debian:latest
 LABEL Maintainer="Ryan Kurte <ryankurte@gmail.com>"
 LABEL Description="Docker image for building arm-embedded projects"
 
+ENV PROTO_VER=3.17.3
+
 RUN dpkg --add-architecture armhf
 
 # General dependencies
@@ -30,16 +32,12 @@ RUN apt-get update && apt-get install -y \
   python3-dev \
   python3-setuptools \
   python3-pip \
-  python3-protobuf \
   python3-serial \
-  libprotobuf-dev \
-  protobuf-compiler \
-  libprotobuf-c-dev \
-  protobuf-c-compiler \
   gcc-arm-none-eabi \
   gcc-arm-linux-gnueabihf \
   gdb-multiarch \
-  srecord
+  srecord \
+  wget
 
 # Set python3 as default
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 5
@@ -58,8 +56,16 @@ RUN git clone https://github.com/texane/stlink.git && \
   cd stlink && mkdir build && cd build && \
   cmake .. && make && make install
 
-# Install AWS tools
-RUN pip3 install awscli
+# Install protobufs
+RUN mkdir /tmp/protobufs && cd /tmp/protobufs && \
+  wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTO_VER/protoc-$PROTO_VER-linux-x86_64.zip && \
+  unzip protoc-$PROTO_VER-linux-x86_64.zip && \
+  mv include/* /usr/local/include/ && \
+  mv bin/* /usr/local/bin/ && \
+  cd / && rm -rf /tmp/protobufs
+
+# Update PIP & Install useful packages
+RUN pip3 install protobuf grpcio-tools awscli
 
 # Cleanup
 RUN apt-get clean && \
