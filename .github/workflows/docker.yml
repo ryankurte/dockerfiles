@@ -89,6 +89,7 @@ jobs:
           - rust-aarch64
           - vim
           - zip
+          - wasm
 
     steps:
     - uses: actions/checkout@v2
