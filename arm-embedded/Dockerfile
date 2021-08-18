@@ -40,6 +40,9 @@ RUN apt-get update && apt-get install -y \
   srecord \
   wget
 
+# Set python3 as default
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 5
+
 # Rust and arm targets
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- --default-toolchain stable -y && \
