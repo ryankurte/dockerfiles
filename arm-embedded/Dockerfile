@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
   genromfs \
   ccache \
   clang \
+  clang-tidy \
   build-essential \
   python3 \
   python3-dev \
@@ -66,6 +67,10 @@ RUN mkdir /tmp/protobufs && cd /tmp/protobufs && \
 
 # Update PIP & Install useful packages
 RUN pip3 install protobuf grpcio-tools awscli
+
+# Install codechecker
+RUN pip3 install --user codechecker
+ENV PATH=/root/.local/bin:$PATH
 
 # Cleanup
 RUN apt-get clean && \
