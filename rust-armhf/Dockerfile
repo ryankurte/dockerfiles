@@ -6,7 +6,7 @@ RUN dpkg --add-architecture armhf && \
     apt update -y && \
     apt install -y git cmake curl file automake make python3 python3-pip pkg-config libssl-dev \
         gcc-arm-linux-gnueabihf libc6-dev-armhf-cross libc6-armhf-cross \
-	libssl-dev:armhf libusb-dev:armhf libusb-1.0:armhf libsdl2-dev:armhf && \ 
+	libssl-dev:armhf libusb-dev:armhf libusb-1.0:armhf libsdl2-dev:armhf libdbus-1-dev:armhf && \ 
     rm -rf /var/lib/apt/lists
 
 # Install rustup
