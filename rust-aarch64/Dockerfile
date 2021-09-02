@@ -6,7 +6,7 @@ RUN dpkg --add-architecture arm64 && \
     apt update -y && \
     apt install -y git cmake curl file automake make python3 python3-pip pkg-config libssl-dev \
         gcc-aarch64-linux-gnu libc6-dev-arm64-cross libc6-arm64-cross \
-	libssl-dev:arm64 libusb-1.0-0:arm64 libsdl2-dev:arm64 libdbus-1-dev:arm64 && \ 
+	libssl-dev:arm64 libusb-1.0-0:arm64 libusb-1.0-0-dev:arm64 libsdl2-dev:arm64 libdbus-1-3:arm64 libdbus-1-dev:arm64 && \ 
     rm -rf /var/lib/apt/lists
 
 # Install rustup

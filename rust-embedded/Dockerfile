@@ -4,7 +4,8 @@ FROM ghcr.io/ryankurte/debian:latest
 RUN dpkg --add-architecture armhf &&\
     apt update -y && \
     apt install -y git cmake curl file build-essential libssl-dev python3 python3-pip pkg-config libusb-1.0-0-dev libdbus-1-dev && \
-    apt install -y libc6-dev-armhf-cross libc6-armhf-cross g++-arm-linux-gnueabihf gcc-arm-linux-gnueabihf libssl-dev:armhf libusb-1.0-0-dev:armhf libdbus-1-dev:armhf && \
+    apt install -y libc6-dev-armhf-cross libc6-armhf-cross g++-arm-linux-gnueabihf gcc-arm-linux-gnueabihf libssl-dev:armhf \
+       libusb-1.0-0-dev:armhf  libusb-1.0-0-dev:armhf libdbus-1-3:armhf libdbus-1-dev:armhf && \
     rm -rf /var/lib/apt/lists
 
 # Install rustup
