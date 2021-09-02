@@ -5,7 +5,7 @@ LABEL Description="Container for cross-compiling i386 linux applications"
 RUN dpkg --add-architecture i386 && \
     apt update -y && \
     apt install -y git cmake curl file automake make python3 python3-pip pkg-config libssl-dev \
-        libc6-i386 libc6-dev-i386 libc6-dev-i386-cross libc6-i386-cross libssl-dev:i386 libusb-dev:i386 libusb-1.0:i386 && \ 
+        libc6-i386 libc6-dev-i386 libc6-dev-i386-cross libc6-i386-cross libssl-dev:i386 libusb-1.0-0:i386 libusb-1-dev:i386 && \ 
     rm -rf /var/lib/apt/lists
 
 # Install rustup

@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y \
   unzip \
   libffi-dev \
   libssl-dev \
-  libusb-1.0.0 \
-  libusb-1.0.0-dev \
+  libusb-1.0-0 \
+  libusb-1.0-0-dev \
   software-properties-common \
   gawk \
   genromfs \
