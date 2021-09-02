@@ -3,8 +3,8 @@ FROM ghcr.io/ryankurte/debian:latest
 # Install deps
 RUN dpkg --add-architecture armhf &&\
     apt update -y && \
-    apt install -y git cmake curl file build-essential libssl-dev python3 python3-pip pkg-config libusb-dev libusb-1.0 && \
-    apt install -y libc6-dev-armhf-cross libc6-armhf-cross g++-arm-linux-gnueabihf gcc-arm-linux-gnueabihf libssl-dev:armhf libusb-dev:armhf libusb-1.0:armhf && \ 
+    apt install -y git cmake curl file build-essential libssl-dev python3 python3-pip pkg-config libusb-dev libusb-1.0 libdbus-1-dev && \
+    apt install -y libc6-dev-armhf-cross libc6-armhf-cross g++-arm-linux-gnueabihf gcc-arm-linux-gnueabihf libssl-dev:armhf libusb-dev:armhf libusb-1.0:armhf libdbus-1-dev:armhf && \
     rm -rf /var/lib/apt/lists
 
 # Install rustup
