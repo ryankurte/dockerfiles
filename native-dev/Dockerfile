@@ -1,5 +1,5 @@
 FROM ghcr.io/ryankurte/debian:latest
-Label Maintainer="Ryan Kurte <ryankurte@gmail.com>"
+LABEL Maintainer="Ryan Kurte <ryankurte@gmail.com>"
 LABEL Description="Docker image for building x86/64 native projects"
 
 ENV DEBIAN_FRONTEND=noninteractive
