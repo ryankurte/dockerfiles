@@ -38,7 +38,8 @@ RUN apt-get update && apt-get install -y \
   gcc-arm-linux-gnueabihf \
   gdb-multiarch \
   srecord \
-  wget
+  wget \
+  pkg-config
 
 # Set python3 as default
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 5
