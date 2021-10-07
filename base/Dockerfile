@@ -8,7 +8,7 @@ ENV PROTO_VER=3.17.3
 # Fetch common base packages via apt
 RUN apt-get update -y && \
     apt-get install -y \
-    vim git curl wget make cmake automake curl file pkg-config libtool \
+    vim git curl wget unzip make cmake automake curl file pkg-config libtool \
     python3 python3-pip python3-dev python3-setuptools \
     libssl-dev libffi-dev libusb-1.0-0 libusb-1.0-0-dev libdbus-1-dev && \
     apt-get clean && \
