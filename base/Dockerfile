@@ -10,7 +10,7 @@ RUN apt-get update -y && \
     apt-get install -y \
     vim git curl make cmake automake curl file pkg-config libtool \
     python3 python3-pip python3-dev python3-setuptools \
-    libssl-dev libffi-dev libusb-1.0-0 libusb-1.0-0-dev libdbus-1-2 libdbus-1-dev && \
+    libssl-dev libffi-dev libusb-1.0-0 libusb-1.0-0-dev libdbus-1-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists
 
