@@ -23,7 +23,9 @@ ENV PATH "/root/.cargo/bin:$PATH"
 # Install rust toolchain and utils
 RUN rustup toolchain install nightly && \
     cargo install --git https://github.com/mozilla/sccache.git --features all && \
-    cargo install cargo-deb
+    cargo install cargo-deb && \
+    cargo install cargo-binstall && \
+    cargo install cross
 
 # Install protobuf tooling
 RUN mkdir /tmp/protobufs && cd /tmp/protobufs && \
