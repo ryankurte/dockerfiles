@@ -84,6 +84,7 @@ jobs:
       matrix:
         image:
           - arm-embedded
+          - amaranth
           - aws-cli
           - esp32
           - esp-sentry
